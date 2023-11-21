@@ -7,7 +7,7 @@ export function TodoShow(props) {
   };
 
   const handleClick = () => {
-    props.onDestroyTodo(props.post);
+    props.onDestroyTodo(props.todo);
   };
 
   return (
@@ -35,11 +35,11 @@ export function TodoShow(props) {
           Category: <input required defaultValue={props.todo.category} name="category" type="date" />
         </div>
         <button type="submit" data-bs-dismiss="modal">
-          Update post
+          Update todo
         </button>
       </form>
       <button onClick={handleClick} data-bs-dismiss="modal">
-        Delete post
+        Delete todo
       </button>
     </div>
   );
