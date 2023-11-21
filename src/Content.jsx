@@ -3,12 +3,28 @@ import { Login } from "./Login";
 import { TodoNew } from "./TodoNew";
 import { TodoIndex } from "./TodoIndex";
 import { CategoryNew } from "./CategoryNew";
+import { CategoriesIndex } from "./CategoriesIndex";
 
 export function Content() {
+  let categories = [
+    {
+      id: 1,
+      name: "Chores",
+    },
+    {
+      id: 2,
+      name: "Homework",
+    },
+    {
+      id: 3,
+      name: "Hobbies",
+    },
+  ];
+
   let todos = [
     {
       id: 1,
-      Title: "hello",
+      title: "hello",
       description: "hello",
       deadline: "05/13/2024",
       completed: "yes",
@@ -16,7 +32,7 @@ export function Content() {
     },
     {
       id: 2,
-      Title: "hello",
+      title: "hello",
       description: "hello",
       deadline: "05/13/2024",
       completed: "yes",
@@ -24,7 +40,7 @@ export function Content() {
     },
     {
       id: 3,
-      Title: "hello",
+      title: "hello",
       description: "hello",
       deadline: "05/13/2024",
       completed: "yes",
@@ -38,6 +54,7 @@ export function Content() {
       <h1>Make your to do list!</h1>
       <TodoNew />
       <CategoryNew />
+      <CategoriesIndex categories={categories} />
       <TodoIndex todos={todos} />
     </main>
   );
