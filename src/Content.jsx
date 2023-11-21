@@ -4,8 +4,26 @@ import { TodoNew } from "./TodoNew";
 import { TodoIndex } from "./TodoIndex";
 import { CategoryNew } from "./CategoryNew";
 import { CategoriesIndex } from "./CategoriesIndex";
+import { Modal } from "./Modal";
+import { useState } from "react";
+// import axios from "axios";
+import { TodoShow } from "./TodoShow";
 
 export function Content() {
+  const [isTodoShowVisible, setIsTodoShowVisible] = useState(false);
+  const [currentTodo, setCurrentTodo] = useState({});
+
+  const handleShowTodo = (todo) => {
+    console.log("handleShowTodo", todo);
+    setIsTodoShowVisible(true);
+    setCurrentTodo(todo);
+  };
+
+  const handleClose = () => {
+    console.log("handleClose");
+    setIsTodoShowVisible(false);
+  };
+
   let categories = [
     {
       id: 1,
@@ -55,7 +73,10 @@ export function Content() {
       <TodoNew />
       <CategoryNew />
       <CategoriesIndex categories={categories} />
-      <TodoIndex todos={todos} />
+      <TodoIndex todos={todos} onShowTodo={handleShowTodo} />
+      <Modal show={isTodoShowVisible} onClose={handleClose}>
+        <TodoShow todo={currentTodo} />
+      </Modal>
     </main>
   );
 }
