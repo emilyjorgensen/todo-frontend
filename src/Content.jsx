@@ -2,6 +2,7 @@ import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { TodoNew } from "./TodoNew";
 import { TodoIndex } from "./TodoIndex";
+import { CategoryNew } from "./CategoryNew";
 
 export function Content() {
   let todos = [
@@ -36,6 +37,7 @@ export function Content() {
       <Signup />
       <h1>Make your to do list!</h1>
       <TodoNew />
+      <CategoryNew />
       <TodoIndex todos={todos} />
     </main>
   );
