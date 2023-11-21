@@ -12,6 +12,9 @@ export function TodoIndex(props) {
             <p>{todo.deadline}</p>
             <p>{todo.completed}</p>
             <p>{todo.category}</p>
+            <div>
+              <button onClick={() => props.onShowTodo(todo)}>More info</button>
+            </div>
           </div>
         ))}
       </div>
