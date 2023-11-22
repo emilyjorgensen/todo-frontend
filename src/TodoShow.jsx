@@ -26,13 +26,13 @@ export function TodoShow(props) {
           Description: <input required defaultValue={props.todo.description} name="description" type="text" />
         </div>
         <div>
-          Deadline: <input required defaultValue={props.todo.deadline} name="deadline" type="date" />
+          Deadline: <input required defaultValue={props.todo.deadline} name="deadline" type="datetime" />
         </div>
         <div>
-          Completed: <input required defaultValue={props.todo.completed} name="completed" type="checkbox" />
+          Completed: <input required defaultValue={props.todo.completed} name="completed" type="text" />
         </div>
         <div>
-          Category: <input required defaultValue={props.todo.category} name="category" type="date" />
+          Category: <input required defaultValue={props.todo.category} name="category_id" type="text" />
         </div>
         <button type="submit" data-bs-dismiss="modal">
           Update todo

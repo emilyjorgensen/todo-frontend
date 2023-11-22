@@ -54,6 +54,22 @@ export function Content() {
     });
   };
 
+  const handleUpdateTodo = (id, params) => {
+    axios.patch(`http://localhost:3000/todos/${id}.json`, params).then((response) => {
+      setTodos(
+        todos.map((todo) => {
+          if (todo.id === response.data.id) {
+            return response.data;
+          } else {
+            return todo;
+          }
+        })
+      );
+      setCurrentTodo(response.data);
+      setIsTodoShowVisible(false);
+    });
+  };
+
   useEffect(handleCategoriesIndex, []);
   useEffect(handleTodosIndex, []);
 
@@ -67,7 +83,7 @@ export function Content() {
       <CategoriesIndex categories={categories} />
       <TodoIndex todos={todos} onShowTodo={handleShowTodo} />
       <Modal show={isTodoShowVisible} onClose={handleClose}>
-        <TodoShow todo={currentTodo} />
+        <TodoShow todo={currentTodo} onUpdateTodo={handleUpdateTodo} />
       </Modal>
     </main>
   );
