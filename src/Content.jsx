@@ -5,13 +5,28 @@ import { TodoIndex } from "./TodoIndex";
 import { CategoryNew } from "./CategoryNew";
 import { CategoriesIndex } from "./CategoriesIndex";
 import { Modal } from "./Modal";
-import { useState } from "react";
-// import axios from "axios";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { TodoShow } from "./TodoShow";
 
 export function Content() {
   const [isTodoShowVisible, setIsTodoShowVisible] = useState(false);
   const [currentTodo, setCurrentTodo] = useState({});
+
+  const [categories, setCategories] = useState([]);
+  // const [currentCategory, setCurrentCategory] = useState({});
+  const handleCategoriesIndex = () => {
+    axios.get("http://localhost:3000/categories.json").then((response) => {
+      console.log(response.data);
+      setCategories(response.data);
+    });
+  };
+
+  const handleCreateCategory = (params) => {
+    axios.post("http://localhost:3000/categories.json", params).then((response) => {
+      setCategories([...categories, response.data]);
+    });
+  };
 
   const handleShowTodo = (todo) => {
     console.log("handleShowTodo", todo);
@@ -24,20 +39,7 @@ export function Content() {
     setIsTodoShowVisible(false);
   };
 
-  let categories = [
-    {
-      id: 1,
-      name: "Chores",
-    },
-    {
-      id: 2,
-      name: "Homework",
-    },
-    {
-      id: 3,
-      name: "Hobbies",
-    },
-  ];
+  useEffect(handleCategoriesIndex, []);
 
   let todos = [
     {
@@ -71,7 +73,7 @@ export function Content() {
       <Signup />
       <h1>Make your to do list!</h1>
       <TodoNew />
-      <CategoryNew />
+      <CategoryNew onCreateCategory={handleCreateCategory} />
       <CategoriesIndex categories={categories} />
       <TodoIndex todos={todos} onShowTodo={handleShowTodo} />
       <Modal show={isTodoShowVisible} onClose={handleClose}>
