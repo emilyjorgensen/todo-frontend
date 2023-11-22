@@ -8,6 +8,7 @@ export function TodoNew() {
   };
   return (
     <div>
+      <h1>Make a New Todo!</h1>
       <form onSubmit={handleSubmit}>
         <div>
           Title: <input name="title" type="text" />

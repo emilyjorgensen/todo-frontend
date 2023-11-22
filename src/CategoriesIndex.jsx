@@ -4,7 +4,7 @@ export function CategoriesIndex(props) {
 
   return (
     <div>
-      <h2>All categories!</h2>
+      <h1>All categories!</h1>
       <div className="cards">
         {props.categories.map((category) => (
           <div key={category.id} className="card">

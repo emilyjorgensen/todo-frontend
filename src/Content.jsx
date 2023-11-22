@@ -1,5 +1,6 @@
-import { Signup } from "./Signup";
+import { Routes, Route } from "react-router-dom";
 import { Login } from "./Login";
+import { Signup } from "./Signup";
 import { TodoNew } from "./TodoNew";
 import { TodoIndex } from "./TodoIndex";
 import { CategoryNew } from "./CategoryNew";
@@ -75,13 +76,14 @@ export function Content() {
 
   return (
     <main>
-      <Login />
-      <Signup />
-      <h1>Make your to do list!</h1>
-      <TodoNew onCreateTodo={handleCreateTodo} />
-      <CategoryNew onCreateCategory={handleCreateCategory} />
-      <CategoriesIndex categories={categories} />
-      <TodoIndex todos={todos} onShowTodo={handleShowTodo} />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/todos/new" element={<TodoNew onCreateTodo={handleCreateTodo} />} />
+        <Route path="/categories/new" element={<CategoryNew onCreateCategory={handleCreateCategory} />} />
+        <Route path="/categories" element={<CategoriesIndex categories={categories} />} />
+        <Route path="/" element={<TodoIndex todos={todos} onShowTodo={handleShowTodo} />} />
+      </Routes>
       <Modal show={isTodoShowVisible} onClose={handleClose}>
         <TodoShow todo={currentTodo} onUpdateTodo={handleUpdateTodo} />
       </Modal>
