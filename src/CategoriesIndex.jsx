@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 export function CategoriesIndex(props) {
   console.log(props);
 
