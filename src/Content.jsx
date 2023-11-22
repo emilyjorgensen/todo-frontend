@@ -39,40 +39,30 @@ export function Content() {
     setIsTodoShowVisible(false);
   };
 
-  useEffect(handleCategoriesIndex, []);
+  const [todos, setTodos] = useState([]);
+  // const [currentCategory, setCurrentCategory] = useState({});
+  const handleTodosIndex = () => {
+    axios.get("http://localhost:3000/todos.json").then((response) => {
+      console.log(response.data);
+      setTodos(response.data);
+    });
+  };
 
-  let todos = [
-    {
-      id: 1,
-      title: "hello",
-      description: "hello",
-      deadline: "05/13/2024",
-      completed: "yes",
-      category_id: 3,
-    },
-    {
-      id: 2,
-      title: "hello",
-      description: "hello",
-      deadline: "05/13/2024",
-      completed: "yes",
-      category_id: 3,
-    },
-    {
-      id: 3,
-      title: "hello",
-      description: "hello",
-      deadline: "05/13/2024",
-      completed: "yes",
-      category_id: 3,
-    },
-  ];
+  const handleCreateTodo = (params) => {
+    axios.post("http://localhost:3000/todos.json", params).then((response) => {
+      setTodos([...todos, response.data]);
+    });
+  };
+
+  useEffect(handleCategoriesIndex, []);
+  useEffect(handleTodosIndex, []);
+
   return (
     <main>
       <Login />
       <Signup />
       <h1>Make your to do list!</h1>
-      <TodoNew />
+      <TodoNew onCreateTodo={handleCreateTodo} />
       <CategoryNew onCreateCategory={handleCreateCategory} />
       <CategoriesIndex categories={categories} />
       <TodoIndex todos={todos} onShowTodo={handleShowTodo} />
