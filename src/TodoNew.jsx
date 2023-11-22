@@ -1,15 +1,14 @@
 export function TodoNew() {
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const params = new FormData(event.target);
-  //   console.log("handle submit", params);
-  //   // props.OnCreateTodo(params);
-  //   event.target.reset();
-  // };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const params = new FormData(event.target);
+    console.log("handle submit", params);
+    // props.OnCreateTodo(params);
+    event.target.reset();
+  };
   return (
     <div>
-      <form>
-        {/* onSubmit={handlesubmit} */}
+      <form onSubmit={handleSubmit}>
         <div>
           Title: <input name="title" type="text" />
         </div>
