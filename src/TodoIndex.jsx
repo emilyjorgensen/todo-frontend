@@ -3,7 +3,7 @@ export function TodoIndex(props) {
 
   return (
     <div>
-      <h1>All todos!</h1>
+      <h1>All of my todos!</h1>
       <div className="cards">
         {props.todos.map((todo) => (
           <div key={todo.id} className="card">
