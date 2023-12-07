@@ -1,10 +1,9 @@
-export function TodoNew() {
+export function TodoNew(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
     console.log("handle submit", params);
-    // props.OnCreateTodo(params);
-    event.target.reset();
+    props.onCreateTodo(params, () => event.target.reset());
   };
   return (
     <div>

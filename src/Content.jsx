@@ -11,6 +11,15 @@ import axios from "axios";
 import { TodoShow } from "./TodoShow";
 
 export function Content() {
+  const [todos, setTodos] = useState([]);
+  // const [currentCategory, setCurrentCategory] = useState({});
+  const handleTodosIndex = () => {
+    axios.get("http://localhost:3000/todos.json").then((response) => {
+      console.log(response.data);
+      setTodos(response.data);
+    });
+  };
+
   const [isTodoShowVisible, setIsTodoShowVisible] = useState(false);
   const [currentTodo, setCurrentTodo] = useState({});
 
@@ -40,17 +49,10 @@ export function Content() {
     setIsTodoShowVisible(false);
   };
 
-  const [todos, setTodos] = useState([]);
-  // const [currentCategory, setCurrentCategory] = useState({});
-  const handleTodosIndex = () => {
-    axios.get("http://localhost:3000/todos.json").then((response) => {
-      console.log(response.data);
-      setTodos(response.data);
-    });
-  };
-
   const handleCreateTodo = (params) => {
+    console.log("handleCreateTodo", params);
     axios.post("http://localhost:3000/todos.json", params).then((response) => {
+      console.log("not broken!");
       setTodos([...todos, response.data]);
     });
   };
